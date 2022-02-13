@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Make Your Own Vekri</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Make yourself a little friend :)">
+  <meta name="author" content="Cat">
+</head>
+<link rel="stylesheet" href="main.css">
+</link>
+
+<body>
+  <div id="creator">
+    <div id="creaturedet">
+      <button title="randomize everything" onclick="Randomize()"> All</button>
+      <button title="randomize colors" onclick="RandomizeOnlyColors()"> Colors</button>
+      <button title="randomize colors from palette" onclick=RandomizePaletteColors()">&lt;3</>
+        <button title="randomize features" onclick="RandomizeOnlyFeatures()"> Features</button>
+        <!--button> Choose Color Theme</button-->
+
+        <div id="creature">
+          <svg viewbox="0 0 200 230">
+            <g id="body" fill="">
+              <g class="ear">
+                <ellipse cx="43.215416" cy="44.338482" rx="10.235508" ry="8.3038406" />
+                <ellipse cx="106.59037" cy="42.936401" rx="10.235508" ry="8.3038406" />
+                <g class="earAccent">
+                  <ellipse cx="45.496803" cy="44.544857" rx="9.5167923" ry="7.2358103" />
+                  <ellipse cx="104.42169" cy="43.323101" rx="9.5167923" ry="7.2358103" />
+                </g>
+              </g>
+              <path
+                d="M 44.519064,44.036953 C 45.286361,60.317213 63.05052,63.708452 76.646808,63.577841 90.243096,63.447229 107.27221,59.814692 106.6706,43.621607 103.77699,22.859202 89.77446,15.002286 75.698602,15.171328 55.673122,17.067489 46.32614,27.874614 44.519064,44.036953 Z"
+                id="path9715" />
+              <path
+                d="m 79.601557,139.0705 c 5.961793,2.50834 10.63448,3.11195 17.115652,-0.2131 9.930831,-42.98279 4.583011,-54.466891 4.583011,-54.466891 8.77548,5.362295 9.42026,5.907651 15.4874,7.743697 4.6234,-0.03375 8.27822,-1.063879 9.32404,-6.479421 1.04581,-5.415543 -0.32607,-8.227507 -1.42231,-9.324044 -8.37508,-6.414214 -20.85069,-9.656259 -28.604281,-14.697224 -10.564392,-7.208548 -28.006056,-4.491277 -40.45687,-1.422312 -8.375619,5.075233 -18.128457,8.025199 -26.880198,14.53919 -1.597711,1.474809 -4.034479,4.414795 -4.741041,6.534483 -1.199356,3.598069 3.45252,8.78703 7.276746,9.743086 4.813752,0.213923 8.883693,-1.037315 19.507635,-7.585663 -6.633366,21.434199 0.406115,41.592979 2.341905,55.800539 7.626754,2.9174 10.254315,3.11453 14.972536,-0.22741 2.728582,-7.6781 3.391838,-14.18849 2.940444,-24.75637 4.920247,1.75234 3.109795,2.10217 8.224953,0.63214 -1.080985,9.36688 0.392721,15.5059 0.330378,24.1793 z" />
+              <g class="tail">
+                <path
+                  d="M 53.868962,113.61273 C 38.231054,146.76216 18.732946,112.16103 11.650035,94.096437 23.549841,105.40985 34.751344,138.00211 51.379639,98.776366 Z" />
+                <path class="tailAccent"
+                  d="M -4.9545163,103.77378 C -5.137344,100.49955 0.86278135,98.045826 6.1244922,98.667083 -4.5984164,91.978323 5.8068628,81.382184 -7.0657018,79.84454 c 4.121302,-6.831456 14.2878421,-0.438947 20.6374458,8.918537 -0.796793,-5.082548 2.957365,-8.108992 2.957365,-8.108992 0.843937,2.11554 8.819516,11.986965 5.874803,14.139355 2.259872,-0.71299 4.89175,-5.04238 5.277366,-4.18206 2.90769,8.35876 -2.71354,13.64173 -5.177793,16.9274 l -3.814951,2.15942 C 6.8479676,114.83924 7.7753245,99.387938 -4.9545163,103.77378 Z" />
+              </g>
+            </g>
+            <path class="belly" d="M 270,200 l 50,50 l -50,50 l -50,-50z" />
+            <ellipse class="belly" cx="75.239677" cy="86.47879" rx="17.318356" ry="20.440336" />
+            <path class="belly" d="M 270,200 l 50,50 l -50,50 l -50,-50z" />
+            <path class="belly"
+              d="M 75.632992,104.42875 C 72.554172,103.24727 62.439237,92.681392 61.371947,90.98306 51.593373,76.129926 69.442679,67.928543 75.356733,79.095509 81.424455,67.099694 97.596382,78.389761 90.038422,90.193764 84.872372,98.981722 78.881659,103.28988 75.632992,104.42875 Z" />
+            <path class="belly"
+              d="M 270,200 l 60,50 l -30,-5 l 20,30 l -30,-10 l -20, 50 l -20,-50 l -30,10 l 20,-30 l -30,5z" />
+            <g class="horn" fill="">
+              <path
+                d="M 86.505001,19.757846 101.36634,5.8414501 97.586577,28.520022 C 90.303121,31.778586 85.340901,22.977528 86.505001,19.757846 Z" />
+              <path
+                d="M 65.617966,20.033126 50.756627,6.1167302 54.53639,28.795302 c 7.283456,3.258564 12.245676,-5.542494 11.081576,-8.762176 z" />
+            </g>
+            <path id="face"
+              d="M 75.904096,23.772162 C 90.517941,28.480672 104.83966,38.706229 100.82316,49.6296 97.427478,56.019973 87.677864,58.989772 75.904095,59.326141 64.130326,59.662509 54.163555,55.825536 51.999033,49.8247 49.774002,36.149841 67.151953,25.359563 75.904096,23.772162 Z"
+              fill="" />
+            <path class="gem"
+              d="m 75.888577,33.819776 -3.828607,-4.712132 0.824623,-0.942426 h 6.007968 l 0.824623,0.942426 z"
+              fill="" />
+            <path class="gem" d="m 75.888577,33.819776 -2.449878,-3.599239 2.449878,-3.465139 2.407133,3.401819 z"
+              fill="" />
+            <ellipse class="gem" ry="3.296097" rx="2.6036398" cy="30.32189" cx="75.907646" fill="" />
+            <path class="gem"
+              d="M 75.888577,33.819776 C 73.921538,33.61102 73.020681,32.791122 73.97616,30.40916 l 1.912417,-3.656527 1.996341,3.593182 c 0.760641,1.906618 0.735879,3.192657 -1.996341,3.473961 z"
+              fill="" />
+            <path class="gem"
+              d="m 72.081949,29.107639 0.102523,3.735695 1.046725,0.672898 5.582557,0.02493 0.82243,-0.797512 0.081,-3.636006 -0.822257,-0.939722 h -5.990729 z"
+              fill="" />
+            <g id="paw" fill="">
+              <g transform="translate(-0.52916663,-0.52916663)">
+                <path
+                  d="m 34.71092,83.167097 c 1.878492,2.041574 7.716585,2.109088 7.419128,-1.092996 -0.41306,-1.237817 -1.870126,-1.135355 -2.583447,-1.722297 -0.921012,-1.213772 -0.652405,-2.739743 -1.755418,-3.808927 -2.458708,-1.153449 -4.667836,4.536425 -3.080263,6.62422 z" />
+                <ellipse cx="30.289249" cy="80.964539" rx="2.1031902" ry="1.5732526" />
+                <ellipse cx="-63.839737" cy="69.744965" rx="2.1031902" ry="1.5732526" transform="rotate(-64.937399)" />
+                <ellipse cx="-22.325676" cy="87.981796" rx="2.1031902" ry="1.5732526" transform="rotate(-34.49843)" />
+              </g>
+              <g transform="matrix(-1,0,0,1,152.70507,-0.67150686)">
+                <path
+                  d="m 34.71092,83.167097 c 1.878492,2.041574 7.716585,2.109088 7.419128,-1.092996 -0.41306,-1.237817 -1.870126,-1.135355 -2.583447,-1.722297 -0.921012,-1.213772 -0.652405,-2.739743 -1.755418,-3.808927 -2.458708,-1.153449 -4.667836,4.536425 -3.080263,6.62422 z" />
+                <ellipse cx="30.289249" cy="80.964539" rx="2.1031902" ry="1.5732526" />
+                <ellipse cx="-63.839737" cy="69.744965" rx="2.1031902" ry="1.5732526" transform="rotate(-64.937399)" />
+                <ellipse cx="-22.325676" cy="87.981796" rx="2.1031902" ry="1.5732526" transform="rotate(-34.49843)" />
+              </g>
+            </g>
+          </svg>
+        </div>
+    </div>
+    <div id="detNav">
+      <div></div>
+      <button onclick="loadet(0)">Body</button>
+      <button onclick="loadet(1)">Head</button>
+      <button onclick="loadet(2)">Face</button>
+      <button onclick="loadet(3)">Account</button>
+    </div>
+    <div class="det" id="bodydet">
+      <div>
+        <label>Body Color:</label>
+        <button onclick="ColorPopup('body')" style="display: inline"> </button>
+      </div>
+      <br>
+      <div>
+        <label> Fur Length: </label>
+        <button class="smallButton" onclick="alterParam('fur', 1)">1</button>
+        <button class="smallButton" onclick="alterParam('fur', 2)">2</button>
+        <button class="smallButton" onclick="alterParam('fur', 3)">3</button>
+        <button class="smallButton" onclick="alterParam('fur', 4)">4</button>
+        <button class="smallButton" onclick="alterParam('fur', 5)">5</button>
+      </div>
+      <br>
+      <div>
+        <label> Fur Type: </label>
+        <button class="smallButton" onclick="alterParam('fur', 'straight')">Straight</button>
+        <button class="smallButton" onclick="alterParam('fur', 'curly')">Curly</button>
+        <button class="smallButton" onclick="alterParam('fur', 'sleek')">Sleek</button>
+      </div>
+      </hr>
+      <div>
+        <label>Paw Color:</label>
+        <button onclick="ColorPopup('paw')" style="display: inline"> </button>
+      </div>
+      <hr>
+      <div>
+        <label> Tail: </label>
+        <button class="smallButton" onclick="alterParam('tail', 1)">1</button>
+        <button class="smallButton" onclick="alterParam('tail', 2)">2</button>
+        <button class="smallButton" onclick="alterParam('tail', 3)">3</button>
+        <button class="smallButton" onclick="alterParam('tail', 4)">4</button>
+        <button class="smallButton" onclick="alterParam('tail', 5)">5</button>
+      </div>
+      <br>
+      <div>
+        <label>Tail Accent Color:</label>
+        <button onclick="ColorPopup('tail')" style="display: inline"> </button>
+        <button class="smallButton" onclick="alterParam('tail','none')"> Remove</button>
+      </div>
+      <hr>
+      <div>
+        <label> Belly Shape: </label>
+        <button class="smallButton" onclick="alterParam('belly', 1)">1</button>
+        <button class="smallButton" onclick="alterParam('belly', 2)">2</button>
+        <button class="smallButton" onclick="alterParam('belly', 3)">3</button>
+        <button class="smallButton" onclick="alterParam('belly', 4)">4</button>
+        <button class="smallButton" onclick="alterParam('belly', 5)">5</button>
+      </div>
+    </div>
+    <div class="det" id="headdet">
+      <div>
+        <label> Face Shape: </label>
+        <button class="smallButton" onclick="alterParam('face', 1)">1</button>
+        <button class="smallButton" onclick="alterParam('face', 2)">2</button>
+      </div>
+      <br>
+      <div>
+        <label>Face Color:</label>
+        <button onclick="ColorPopup('face')" style="display: inline"> </button>
+      </div>
+      <hr>
+      <div>
+        <label> Ear Shape: </label>
+        <button class="smallButton" onclick="alterParam('ear', 1)">1</button>
+        <button class="smallButton" onclick="alterParam('ear', 2)">2</button>
+        <button class="smallButton" onclick="alterParam('ear', 3)">3</button>
+        <button class="smallButton" onclick="alterParam('ear', 4)">4</button>
+        <button class="smallButton" onclick="alterParam('ear', 5)">5</button>
+      </div>
+      <br>
+      <div>
+        <label>Ear Accent Color:</label>
+        <button onclick="ColorPopup('ear')" style="display:inline;"> </button>
+      </div>
+      <hr>
+      <div>
+        <label> Horn Shape: </label>
+        <button class="smallButton" onclick="alterParam('horn', 1)">1</button>
+        <button class="smallButton" onclick="alterParam('horn', 2)">2</button>
+        <button class="smallButton" onclick="alterParam('horn', 3)">3</button>
+        <button class="smallButton" onclick="alterParam('horn', 4)">4</button>
+        <button class="smallButton" onclick="alterParam('horn', 5)">5</button>
+      </div>
+      <br>
+      <div>
+        <label>Horn Color:</label>
+        <button onclick="ColorPopup('horn')" style="display:inline"> </button>
+      </div>
+      <hr>
+    </div>
+    <div class="det" id="facedet">
+      <div>
+        <label> Gem Shape: </label>
+        <button class="smallButton" onclick="alterParam('gem', 1)">1</button>
+        <button class="smallButton" onclick="alterParam('gem', 2)">2</button>
+        <button class="smallButton" onclick="alterParam('gem', 3)">3</button>
+        <button class="smallButton" onclick="alterParam('gem', 4)">4</button>
+        <button class="smallButton" onclick="alterParam('gem', 5)">5</button>
+      </div>
+      <br>
+      <div>
+        <label>Gem Color:</label>
+        <button onclick="ColorPopup('gem')" style="display:inline"> </button>
+      </div>
+      <hr>
+      <pre>
+	    TODO:
+	    Move gems here
+	    Add eyes, add mouth
+	    option to change eye color
+	    haven't decided on mouth color
+	    </pre>
+    </div>
+    <div class="det" id="accdet">
+      <div>
+        <label>Name:</label>
+        <input type="text" onkeyup="alterParam('name', this.value)"></input>
+      </div>
+      <div>
+        <label>Notes:</label>
+        <textarea title="Tell me about your Vekri" onkeyup="alterParam('notes', this.value)"></textarea>
+        <p id="error"></p>
+      </div>
+    </div>
+  </div>
+  <div id="ColorPickerOverlay">
+    <button onclick="Exit()">X</button>
+    <div id="ColorPicker">
+      <div>
+        <label>Hue:</label>
+        <div class="hue">
+          <input type="range" id="hue" min="0" max="360" step="1" value="180" onchange="UpdateColor()"></input>
+        </div>
+      </div>
+      <div>
+        <label>Saturation:</label>
+        <div id="satDiv">
+          <input type="range" id="sat" min="0" max="100" step="1" value="50" onchange="UpdateColor()"></input>
+        </div>
+      </div>
+      <div>
+        <label>Lightness:</label>
+        <div class="light">
+          <input type="range" id="light" min="0" max="100" step="1" value="50" onchange="UpdateColor()"></input>
+        </div>
+      </div>
+      <div>
+        <label>Hex: #</label>
+        <input type="text" maxlength="7" id="hexInput" onchange="SetHex()"></input>
+      </div>
+
+      <div class="colorSquare" id="sample">
+      </div>
+      <div id="sampleButtons">
+        <p id="hexVal">#40bfbf</p>
+        <button onclick="Apply()"> Apply </button>
+        <button onclick="OverwritePopUp()">Save Color</button>
+      </div>
+      <div id="colorBank">
+        <div class="colorSquare savedColors" onclick="LoadColor(1)">
+        </div>
+        <div class="colorSquare savedColors" onclick="LoadColor(2)">
+        </div>
+        <div class="colorSquare savedColors" onclick="LoadColor(3)">
+        </div>
+        <div class="colorSquare savedColors" onclick="LoadColor(4)">
+        </div>
+        <div class="colorSquare savedColors" onclick="LoadColor(5)">
+        </div>
+        <div class="colorSquare savedColors" onclick="LoadColor(6)">
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <div id="overwriteOverlay">
+    <div id="overwrite">
+      <button class="smallButton" onclick="Overwrite(1)">1</button>
+      <button class="smallButton" onclick="Overwrite(2)">2</button>
+      <button class="smallButton" onclick="Overwrite(3)">3</button>
+      <button class="smallButton" onclick="Overwrite(4)">4</button>
+      <button class="smallButton" onclick="Overwrite(5)">5</button>
+      <button class="smallButton" onclick="Overwrite(6)">6</button>
+      <button onclick="CloseOverwrite()"> Cancel </button>
+    </div>
+  </div>
+</body>
+<script>
+  sessionStorage.setItem('palette', JSON.stringify(["#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff"]));
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="creatureEdit.js"></script>
+<script type="text/javascript" src="colorSelector.js"></script>
+<script type="text/javascript" src="loadThemes.js"></script>
+
+</html>
