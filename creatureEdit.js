@@ -50,19 +50,45 @@ function reloadAttribute(attr, accent) {
   }
 }
 function reloadCreature() {
-  reloadAttribute("gem", "none");
-  //reloadAttribute("horn", "none");
+  /*reloadAttribute("gem", "none");
+  reloadAttribute("horn", "none");
   reloadAttribute("ear", "earAccent");
   reloadAttribute("tail", "tailAccent");
   let bellies = document.getElementsByClassName("belly");
   for (let i = 0; i < bellies.length; i++) {
-    bellies[i].style.display = "none";
+   bellies[i].style.display = "none";
   }
   bellies[creature.belly - 1].style.display = "inline";
   bellies[creature.belly - 1].style.fill = creature.face.color;
   document.getElementById("body").style.fill = creature.body;
   document.getElementById("face").style.fill = creature.face.color;
-  document.getElementById("paw").style.fill = creature.paw;
+  document.getElementById("paw").style.fill = creature.paw;*/
+
+  $.post(
+    "./reloadCreature.php",
+    {
+      texture: creature.fur.type,
+      length: creature.fur.len,
+      belly: creature.belly,
+      tail: creature.tail.shape,
+      face: creature.face.shape,
+      ear: creature.ear.shape,
+      horn: creature.horn.shape,
+      gem: creature.gem.shape,
+    },
+    function (data) {
+      console.log(data);
+      document.getElementById("creature").innerHTML = data;
+      //document.getElementById("body").style.fill = creature.body;
+      //document.getElementById("face").style.fill = creature.face.color;
+      //document.getElemengtById("belly").style.fill = creature.face.color;
+      //document.getElemengtById("gem").style.fill = creature.gem.color;
+      //document.getElemengtById("horn").style.fill = creature.horn.color;
+      //document.getElemengtById("earAccent").style.fill = creature.ear.color;
+      //document.getElemengtById("tailAccent").style.fill = creature.tail.color;
+      document.getElementById("paw").style.fill = creature.paw;
+    }
+  );
 }
 function loadet(index) {
   let dets = document.getElementsByClassName("det");
@@ -73,7 +99,7 @@ function loadet(index) {
     }
   }
 }
-function alterParam(param, val) {
+function setParam(param, val) {
   if (mults.indexOf(param) !== -1) {
     for (const property in creature[param]) {
       if (typeof creature[param][`${property}`] == typeof val) {
@@ -92,6 +118,9 @@ function alterParam(param, val) {
   } else {
     creature[param] = val;
   }
+}
+function alterParam(param, val) {
+  setParam(param, val);
   //update display
   reloadCreature();
 }
@@ -119,37 +148,48 @@ function Randomize() {
   let x = 0;
   for (let i = 0; i < all.length - 1; i++) {
     if (i > 1) {
-      alterParam(all[i], Math.floor(Math.random() * 4) + 1);
+      setParam(all[i], Math.floor(Math.random() * 4) + 1);
     }
     if (i != 2 && i != 3) {
-      alterParam(all[i], randColor());
+      setParam(all[i], randColor());
     }
     if (i == 3) {
-      alterParam(all[i], furs[Math.floor(Math.random() * 3)]);
+      setParam(all[i], furs[Math.floor(Math.random() * 3)]);
+      setParam(all[i], Math.floor(Math.random() * 3));
     }
   }
+  //update display
+  reloadCreature();
 }
 function RandomizeOnlyColors() {
   for (let i = 0; i < all.length - 1; i++) {
     if (i != 2 && i != 3) {
-      alterParam(all[i], randColor());
+      setParam(all[i], randColor());
     }
   }
+  //update display
+  reloadCreature();
 }
 function RandomizeOnlyFeatures() {
   for (let i = 2; i < all.length - 1; i++) {
-    alterParam(all[i], Math.floor(Math.random() * 4) + 1);
     if (i == 3) {
-      alterParam(all[i], furs[Math.floor(Math.random() * 3)]);
+      setParam(all[i], furs[Math.floor(Math.random() * 3)]);
+      setParam(all[i], Math.floor(Math.random() * 3));
+    } else {
+      setParam(all[i], Math.floor(Math.random() * 4) + 1);
     }
   }
+  //update display
+  reloadCreature();
 }
 function RandomizePaletteColors() {
   let colors = JSON.parse(sessionStorage.getItem("palette"));
   for (let i = 0; i < all.length - 1; i++) {
     if (i != 2 && i != 3) {
-      alterParam(all[i], colors[Math.floor(Math.random() * 5)]);
+      setParam(all[i], colors[Math.floor(Math.random() * 5)]);
     }
   }
+  //update display
+  reloadCreature();
 }
 reloadCreature();

@@ -1,5 +1,8 @@
 "use strict";
-//FIXME: savedColors not persisting
+//FIXME: Randomizers need to change the sample color square
+//maybe just have sample color load fromm current body color and the changees reflect in the sliders
+//sliders need to be relatively sized
+//hex value loader no longer working
 let savedColors = ["", "", "", "", "", ""];
 const hue = document.getElementById("hue");
 const sat = document.getElementById("sat");
@@ -193,4 +196,3 @@ function Overwrite(index) {
   sessionStorage.setItem('palette', JSON.stringify(savedColors));
   CloseOverwrite();
 }
-
