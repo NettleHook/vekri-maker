@@ -49,21 +49,8 @@ function reloadAttribute(attr, accent) {
     }
   }
 }
-function reloadCreature() {
-  /*reloadAttribute("gem", "none");
-  reloadAttribute("horn", "none");
-  reloadAttribute("ear", "earAccent");
-  reloadAttribute("tail", "tailAccent");
-  let bellies = document.getElementsByClassName("belly");
-  for (let i = 0; i < bellies.length; i++) {
-   bellies[i].style.display = "none";
-  }
-  bellies[creature.belly - 1].style.display = "inline";
-  bellies[creature.belly - 1].style.fill = creature.face.color;
-  document.getElementById("body").style.fill = creature.body;
-  document.getElementById("face").style.fill = creature.face.color;
-  document.getElementById("paw").style.fill = creature.paw;*/
-
+function reloadCreature(feat) {
+  console.log (creature);
   $.post(
     "./reloadCreature.php",
     {
@@ -75,17 +62,17 @@ function reloadCreature() {
       ear: creature.ear.shape,
       horn: creature.horn.shape,
       gem: creature.gem.shape,
+      changed: feat,
     },
     function (data) {
-      console.log(data);
       document.getElementById("creature").innerHTML = data;
-      //document.getElementById("body").style.fill = creature.body;
-      //document.getElementById("face").style.fill = creature.face.color;
-      //document.getElemengtById("belly").style.fill = creature.face.color;
-      //document.getElemengtById("gem").style.fill = creature.gem.color;
-      //document.getElemengtById("horn").style.fill = creature.horn.color;
-      //document.getElemengtById("earAccent").style.fill = creature.ear.color;
-      //document.getElemengtById("tailAccent").style.fill = creature.tail.color;
+      document.getElementById("body").style.fill = creature.body;
+      document.getElementById("face").style.fill = creature.face.color;
+      document.getElementById("belly").style.fill = creature.face.color;
+      document.getElementById("gem").style.fill = creature.gem.color;
+      //document.getElementById("horn").style.fill = creature.horn.color;
+      document.getElementById("earAccent").style.fill = creature.ear.color;
+      document.getElementById("tailAccent").style.fill = creature.tail.color;
       document.getElementById("paw").style.fill = creature.paw;
     }
   );
@@ -122,7 +109,7 @@ function setParam(param, val) {
 function alterParam(param, val) {
   setParam(param, val);
   //update display
-  reloadCreature();
+  reloadCreature(param);
 }
 function randColor() {
   //we want to preference the 25-75% lightness range and the 25-100% saturation range
@@ -159,7 +146,7 @@ function Randomize() {
     }
   }
   //update display
-  reloadCreature();
+  reloadCreature("all");
 }
 function RandomizeOnlyColors() {
   for (let i = 0; i < all.length - 1; i++) {
@@ -168,7 +155,7 @@ function RandomizeOnlyColors() {
     }
   }
   //update display
-  reloadCreature();
+  reloadCreature("all");
 }
 function RandomizeOnlyFeatures() {
   for (let i = 2; i < all.length - 1; i++) {
@@ -180,7 +167,7 @@ function RandomizeOnlyFeatures() {
     }
   }
   //update display
-  reloadCreature();
+  reloadCreature("all");
 }
 function RandomizePaletteColors() {
   let colors = JSON.parse(sessionStorage.getItem("palette"));
@@ -190,6 +177,6 @@ function RandomizePaletteColors() {
     }
   }
   //update display
-  reloadCreature();
+  reloadCreature("all");
 }
-reloadCreature();
+reloadCreature("all");

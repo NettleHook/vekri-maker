@@ -1,42 +1,88 @@
 
 <?php
+require "VekriClass.php";
+session_start();
 //get the creature
 //first check that POST was used
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    //proceed to read the JSON to get fields by which to search
-    $result = "<svg viewbox='0 0 200 230'>";
-    $result .= "<g id='body'>";
-    /*handle in this order:
-        tail
-        ear
-        body
-        head
-        */
-    $result .= "</g>";
-    /*
-        belly
-        horns
-        face
-        gem
-        face details
-        */
-    $result .= "<g id='paw'>
-        <g transform='translate(-0.52916663,-0.52916663)'>
-          <path
-            d='m 34.71092,83.167097 c 1.878492,2.041574 7.716585,2.109088 7.419128,-1.092996 -0.41306,-1.237817 -1.870126,-1.135355 -2.583447,-1.722297 -0.921012,-1.213772 -0.652405,-2.739743 -1.755418,-3.808927 -2.458708,-1.153449 -4.667836,4.536425 -3.080263,6.62422 z' />
-          <ellipse cx='30.289249' cy='80.964539' rx='2.1031902' ry='1.5732526' />
-          <ellipse cx='-63.839737' cy='69.744965' rx='2.1031902' ry='1.5732526' transform='rotate(-64.937399)' />
-          <ellipse cx='-22.325676' cy='87.981796' rx='2.1031902' ry='1.5732526' transform='rotate(-34.49843)' />
-        </g>
-        <g transform='matrix(-1,0,0,1,152.70507,-0.67150686)'>
-          <path
-            d='m 34.71092,83.167097 c 1.878492,2.041574 7.716585,2.109088 7.419128,-1.092996 -0.41306,-1.237817 -1.870126,-1.135355 -2.583447,-1.722297 -0.921012,-1.213772 -0.652405,-2.739743 -1.755418,-3.808927 -2.458708,-1.153449 -4.667836,4.536425 -3.080263,6.62422 z' />
-          <ellipse cx='30.289249' cy='80.964539' rx='2.1031902' ry='1.5732526' />
-          <ellipse cx='-63.839737' cy='69.744965' rx='2.1031902' ry='1.5732526' transform='rotate(-64.937399)' />
-          <ellipse cx='-22.325676' cy='87.981796' rx='2.1031902' ry='1.5732526' transform='rotate(-34.49843)' />
-        </g>
-      </g>
-    </svg>";
-    echo $result;
+    $servername = "hotel.he.net";
+    $username = "cat05";
+    $password = "vw4sn9Po";
+    $dbname = "cat05";
+
+    $texture = $_POST['texture'];
+    $len = $_POST['length'];
+    $bellyID = $_POST['belly'];
+    $faceID = $_POST['face'];
+    $earID = $_POST['ear'];
+    $tailID = $_POST['tail'];
+    $hornID = $_POST['horn'];
+    $gemID = $_POST['gem'];
+    $changed = $_POST['changed'];
+    // Create connection
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
+    // Check connection
+    if (!$conn) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+    if(!isset($_SESSION['vekri'])){
+        $_SESSION['vekri'] = new Vekri();
+    }
+    if ($changed == 'all' || $changed == 'fur') {
+        $sql = "SELECT * FROM VekriSampler WHERE texture = '$texture' AND length = $len AND id = 1 AND type = 'body'";
+        $data = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($data);
+        $_SESSION['vekri']->body = $row['info'];
+    }
+    if ($changed == 'all' || $changed == 'ear' || $changed == 'fur') {
+        $sql = "SELECT * FROM VekriSampler WHERE texture = '$texture' AND length = $len AND id = $earID AND type = 'ear'";
+        $data = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($data);
+        $_SESSION['vekri']->ear = $row['info'];
+    }
+    if ($changed == 'all' || $changed == 'tail' || $changed == 'fur') {
+        $sql = "SELECT * FROM VekriSampler WHERE texture = '$texture' AND length = $len AND id = $tailID AND type = 'tail'";
+        $data = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($data);
+        $_SESSION['vekri']->tail = $row['info'];
+    }
+    if ($changed == 'all' || $changed == 'face') {
+        $sql = "SELECT * FROM VekriSampler WHERE texture = '$texture' AND length = $len AND id = $faceID AND type = 'face'";
+        $data = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($data);
+        $_SESSION['vekri']->face = $row['info'];
+    }
+    if ($changed == 'all' || $changed == 'belly') {
+        $sql = "SELECT * FROM VekriSampler WHERE texture = '$texture' AND length = $len AND id = $bellyID AND type = 'belly'";
+        $data = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($data);
+        $_SESSION['vekri']->belly = $row['info'];
+    }
+    if ($changed == 'all' || $changed == 'gem') {
+        $sql = "SELECT * FROM VekriSampler WHERE texture = '$texture' AND length = $len AND id = $gemID AND type = 'gem'";
+        $data = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($data);
+        $_SESSION['vekri']->gem = $row['info'];
+    }/*
+    if ($changed == 'all' || $changed == 'horn') {
+        $sql = "SELECT * FROM VekriSampler WHERE texture = '$texture' AND length = $len AND id = $hornID AND type = 'horn'";
+        $data = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($data);
+        $_SESSION['vekri']->horn = $row['info'];
+        $_SESSIONhorn'] = $row['info]'];
+    }else{
+        $_SESSION['vekri']->horn = $_SESSIONhorn'];
+    }
+    if ($changed == 'all' || $changed == 'faceDets') {
+        $sql = "SELECT * FROM VekriSampler WHERE texture = '$texture' AND length = $len AND id = $gemID AND type = 'faceDets'";
+        $data = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($data);
+        $_SESSION['vekri']->faceDets = $row['info'];
+        $_SESSIONfaceDets'] = $row['info]'];
+    }else{
+        $_SESSION['vekri']->faceDets = $_SESSIONfaceDets'];
+    }*/
+    echo $_SESSION['vekri']->stringify();
+    mysqli_close($conn);
 }
 ?>
