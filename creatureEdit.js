@@ -1,4 +1,5 @@
 "use strict";
+//FIXME: color randomizers maybe only reload color so we're not making server/sql requests
 let creature = {
   body: "hsl(0, 100%, 100%)",
   paw: "hsl(0, 100%, 0%",
@@ -9,6 +10,14 @@ let creature = {
   ear: { shape: 1, color: "hsl(0, 100%, 100%)" },
   horn: { shape: 1, color: "hsl(0, 100%, 100%)" },
   gem: { shape: 1, color: "hsl(0, 100%, 0%)" },
+  //gen eye shape and sclera color
+  eyes1: { shape: 1, color: "hsl(0, 100%, 0%)" },
+  //lashes and iris color
+  eyes2: { shape: 0, color: "hsl(0, 100%, 0%)" },
+  pupil: { shape: 1, color: "hsl(0, 100%, 0%)" },
+  mouth: { shape: 1, color: "hsl(0, 100%, 0%)" },
+  acc1: { shape: 1, color: "hsl(0, 100%, 0%)" },
+  acc2: { shape: 1, color: "hsl(0, 100%, 0%)" },
   name: "",
   notes: "",
 };
@@ -22,35 +31,42 @@ const all = [
   "ear",
   "horn",
   "gem",
+  "eyes1",
+  "eyes2",
+  "pupil",
+  "mouth",
+  "acc1",
+  "acc2",
   "name",
 ];
-const mults = ["fur", "tail", "face", "ear", "horn", "gem"];
-const furs = ["straight", "curly", "sleek"];
+const mults = [
+  "fur",
+  "tail",
+  "face",
+  "ear",
+  "horn",
+  "gem",
+  "eyes1",
+  "eyes2",
+  "pupil",
+  "mouth",
+  "acc1",
+  "acc2",
+];
+const furs = ["straight", "curly", "pattern"];
 const user = ["name", "notes"];
 const pattern = /[^\w\-]+/;
 const error = document.getElementById("error");
+let more = false;
 let cretDisplay = document.getElementById("creature");
-function reloadAttribute(attr, accent) {
-  let feat = document.getElementsByClassName(attr);
-  for (let i = 0; i < feat.length; i++) {
-    feat[i].style.display = "none";
-  }
-  feat[creature[attr]["shape"] - 1].style.display = "inline";
-  if (accent == "none") {
-    feat[creature[attr]["shape"] - 1].style.fill = creature[attr]["color"];
-  } else {
-    let acct = document.getElementsByClassName(accent);
-    feat[creature[attr]["shape"] - 1].style.fill = creature["body"];
-    if (creature[attr]["color"] != "none") {
-      let acct = document.getElementsByClassName(accent);
-      acct[creature[attr]["shape"] - 1].style.fill = creature[attr]["color"];
-    } else {
-      acct[creature[attr]["shape"] - 1].style.fill = creature["body"];
-    }
-  }
-}
 function reloadCreature(feat) {
-  console.log (creature);
+  if (more) {
+    console.log("doubling eyes");
+    creature.eyes1.shape = 2 * creature.eyes1.shape;
+  } else if (creature.eyes1.shape % 2 == 0) {
+    creature.eyes1.shape = creature.eyes1.shape / 2;
+  }
+  console.log(creature);
   $.post(
     "./reloadCreature.php",
     {
@@ -111,6 +127,21 @@ function alterParam(param, val) {
   //update display
   reloadCreature(param);
 }
+//fixme: disable the -/+ buttons accordingly?
+function changeEyeNum(ch) {
+  let curr = creature.eyes1.shape;
+  if (ch == "+" && curr % 2 == 1) {
+    more = true;
+    document.getElementById("2eye").disabled = false;
+    document.getElementById("4eye").disabled = true;
+    reloadCreature("eyes1");
+  } else if (ch == "-" && curr % 2 == 0) {
+    more = false;
+    document.getElementById("2eye").disabled = true;
+    document.getElementById("4eye").disabled = false;
+    reloadCreature("eyes1");
+  }
+}
 function randColor() {
   //we want to preference the 25-75% lightness range and the 25-100% saturation range
   //reduce to 4 and weight equiv more heavily (ie 2,3 for lightness, 2-4 for saturation weighed more heavily
@@ -142,7 +173,7 @@ function Randomize() {
     }
     if (i == 3) {
       setParam(all[i], furs[Math.floor(Math.random() * 3)]);
-      setParam(all[i], Math.floor(Math.random() * 3));
+      setParam(all[i], Math.floor(Math.random() * 2));
     }
   }
   //update display
@@ -161,7 +192,7 @@ function RandomizeOnlyFeatures() {
   for (let i = 2; i < all.length - 1; i++) {
     if (i == 3) {
       setParam(all[i], furs[Math.floor(Math.random() * 3)]);
-      setParam(all[i], Math.floor(Math.random() * 3));
+      setParam(all[i], Math.floor(Math.random() * 2));
     } else {
       setParam(all[i], Math.floor(Math.random() * 4) + 1);
     }
