@@ -1,12 +1,15 @@
 "use strict";
-//FIXME: savedColors not persisting
+//FIXME: Randomizers need to change the sample color square
+//maybe just have sample color load fromm current body color and the changees reflect in the sliders
+//sliders need to be relatively sized
+//hex value loader no longer working
 let savedColors = ["", "", "", "", "", ""];
 const hue = document.getElementById("hue");
 const sat = document.getElementById("sat");
 const light = document.getElementById("light");
 const sample = document.getElementById("sample");
 let eventOriginator = document.getElementById("exitButton");
-let param="";
+let param = "";
 function Exit() {
   document.getElementById("ColorPickerOverlay").style.display = "none";
 }
@@ -19,10 +22,10 @@ function LoadSaved() {
 }
 function ColorPopup(attr) {
   document.getElementById("ColorPickerOverlay").style.display = "block";
-  savedColors = JSON.parse(sessionStorage.getItem('palette'));
-	console.log(savedColors)
+  savedColors = JSON.parse(sessionStorage.getItem("palette"));
+  console.log(savedColors);
   LoadSaved();
-  if(sample.style.backgroundColor == ""){
+  if (sample.style.backgroundColor == "") {
     sample.style.backgroundColor = "hsl(0, 50%, 50%)";
   }
   eventOriginator = event.target;
@@ -77,10 +80,10 @@ function HSLParser(hsl) {
   return [
     Number(vals[0]),
     Number(vals[1].slice(0, vals[1].length - 1)),
-    Number(vals[2].slice(0, vals[2].length - 1))
+    Number(vals[2].slice(0, vals[2].length - 1)),
   ];
 }
-//conversion code obtained from 
+//conversion code obtained from
 function toHex(r, g, b) {
   r = r.toString(16);
   g = g.toString(16);
@@ -138,15 +141,14 @@ function RGBtoHSL(rgb) {
   rgb = rgb.slice(4, rgb.length - 1);
   let rgbAr = rgb.split(", ");
   let r = Number(rgbAr[0]) / 255,
-      g = Number(rgbAr[1]) / 255,
-      b = Number(rgbAr[2]) / 255;
+    g = Number(rgbAr[1]) / 255,
+    b = Number(rgbAr[2]) / 255;
   let max = Math.max(r, g, b),
-      min = Math.min(r, g, b);
+    min = Math.min(r, g, b);
   let delta = max - min;
   let h = 0,
-      l = (max + min) / 2,
-      s =
-    delta == 0 ? 0 : Math.round((delta / (1 - Math.abs(2 * l - 1))) * 100);
+    l = (max + min) / 2,
+    s = delta == 0 ? 0 : Math.round((delta / (1 - Math.abs(2 * l - 1))) * 100);
   if (delta == 0) {
     h = 0;
   } else if (max == r) {
@@ -169,7 +171,7 @@ function UpdateColor() {
   document.getElementById("hexVal").innerHTML = HSLtoHex([
     hue.value,
     sat.value,
-    light.value
+    light.value,
   ]);
 }
 //saved in the array as rgb(x, y, z) so needs to be converted to hsl(a, b, c) for porper display
@@ -190,7 +192,6 @@ function Overwrite(index) {
     index - 1
   ].style.backgroundColor = newColor;
   savedColors[index - 1] = newColor;
-  sessionStorage.setItem('palette', JSON.stringify(savedColors));
+  sessionStorage.setItem("palette", JSON.stringify(savedColors));
   CloseOverwrite();
 }
-
