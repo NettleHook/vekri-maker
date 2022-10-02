@@ -18,25 +18,18 @@ $_SESSION['vekri'] = new Vekri();
 </link>
 
 <body>
+
     <div id="creator">
+
         <div id="creaturedet">
             <div id="randomizers">
                 <button title="randomize everything" onclick="Randomize()">
                     <image src="supportingFiles/dice.png" alt="Random" width="25px;" height="20px;"></image>
+
                 </button>
-                <button title="randomize colors" onclick="RandomizeOnlyColors()">
-                    <image src="supportingFiles/dice.png" alt="Random" width="25px;" height="20px;"></image>
-                    <image src="supportingFiles/rainbow.png" alt="Color" width="25px;" height="20px;"></image>
-                </button>
-                <button title="randomize colors from palette" onclick="RandomizePaletteColors()">
-                    <image src="supportingFiles/dice.png" alt="Random" width="25px;" height="20px;"></image>
-                    <image src="supportingFiles/palette.png" alt="Palette Color" width="25px;" height="20px;"></image>
-                </button>
-                <button title="randomize features" onclick="RandomizeOnlyFeatures()">
-                    <image src="supportingFiles/dice.png" alt="Random" width="25px;" height="20px;"></image>
-                    <image src="supportingFiles/feat.png" alt="Features" width="25px;" height="20px;"></image>
-                </button>
+                <button class='smallButton' onclick="download()">Save</button>
             </div>
+
             <!--button> Choose Color Theme</button-->
 
             <div id="creature"></div>
@@ -51,25 +44,25 @@ $_SESSION['vekri'] = new Vekri();
         <div class="det" id="bodydet">
             <div>
                 <label>Body Color:</label>
-                <button onclick="ColorPopup('body')" style="display: inline"> </button>
+                <button class="popup" onclick="ColorPopup('body')" id='bodypop' style="display: inline; background-color: hsl(0, 100%, 100%)"> </button>
             </div>
             <br>
             <div>
                 <label> Fur Length: </label>
                 <button class="smallButton" onclick="alterParam('fur', 0)">Short</button>
-                <button class="smallButton" onclick="alterParam('fur', 1)">Long</button>
+                <!--button class="smallButton" onclick="alterParam('fur', 1)">Long</button-->
             </div>
             <br>
             <div>
                 <label> Fur Type: </label>
                 <button class="smallButton" onclick="alterParam('fur', 'straight')">Straight</button>
                 <button class="smallButton" onclick="alterParam('fur', 'curly')">Curly</button>
-                <button class="smallButton" onclick="alterParam('fur', 'pattern')">Pattern</button>
+                <!--button class="smallButton" onclick="alterParam('fur', 'pattern')">Pattern</button-->
             </div>
             </hr>
             <div>
                 <label>Paw Color:</label>
-                <button onclick="ColorPopup('paw')" style="display: inline"> </button>
+                <button class="popup" onclick="ColorPopup('paw')" id='pawpop' style="display: inline; background-color: hsl(0, 0%, 50%)"> </button>
             </div>
             <hr>
             <div>
@@ -83,7 +76,7 @@ $_SESSION['vekri'] = new Vekri();
             <br>
             <div>
                 <label>Tail Accent Color:</label>
-                <button onclick="ColorPopup('tail')" style="display: inline"> </button>
+                <button class="popup" onclick="ColorPopup('tail')" id='tailAccentpop' style="display: inline; background-color: hsl(0, 100%, 100%)"> </button>
                 <button onclick="alterParam('tail','none')">X</button>
             </div>
             <hr>
@@ -107,7 +100,7 @@ $_SESSION['vekri'] = new Vekri();
             <br>
             <div>
                 <label>Face Color:</label>
-                <button onclick="ColorPopup('face')" style="display: inline"> </button>
+                <button class="popup" onclick="ColorPopup('face')" id='facepop' style="display: inline; background-color: hsl(0, 0%, 50%)"> </button>
             </div>
             <hr>
             <div>
@@ -121,7 +114,7 @@ $_SESSION['vekri'] = new Vekri();
             <br>
             <div>
                 <label>Ear Accent Color:</label>
-                <button onclick="ColorPopup('ear')" style="display:inline;"> </button>
+                <button class="popup" onclick="ColorPopup('ear')" id='earAccentpop' style="display:inline; background-color: hsl(0, 0%, 50%)"> </button>
                 <button onclick="alterParam('ear','none')">X</button>
 
             </div>
@@ -137,12 +130,12 @@ $_SESSION['vekri'] = new Vekri();
             <br>
             <div>
                 <label>Horn Color:</label>
-                <button onclick="ColorPopup('horn')" style="display:inline"> </button>
+                <button class="popup" onclick="ColorPopup('horn')" id='hornpop' style="display:inline"> </button>
             </div>
             <hr>
         </div>
         <div class="det" id="facedet">
-            <div> <label>Details Color:</label><button onclick="ColorPopup('mouth')" style="display:inline"> </button>
+            <div> <label>Details Color:</label><button class="popup" onclick="ColorPopup('faceAccent')" id='faceAccentpop' style="display:inline ; background-color: hsl(0, 0%, 0%)"> </button>
             </div>
             <div>
                 <label> Gem Shape: </label>
@@ -155,13 +148,13 @@ $_SESSION['vekri'] = new Vekri();
             <br>
             <div>
                 <label>Gem Color:</label>
-                <button onclick="ColorPopup('gem')" style="display:inline"> </button>
+                <button class="popup" onclick="ColorPopup('gem')" id='gempop' style="display:inline; background-color: hsl(0, 0%, 100%)"> </button>
             </div>
             <hr>
             <div>
                 <label> Eyes:</label>
                 <div>
-                    <button class="smallButton" id="2eye" onclick="changeEyeNum('-')" style="disabled:true;">-</button>
+                    <button class="smallButton" id="2eye" onclick="changeEyeNum('-')" disabled>-</button>
                     <button class="smallButton" id="4eye" onclick="changeEyeNum('+')">+</button>
                 </div>
                 <div>
@@ -178,15 +171,15 @@ $_SESSION['vekri'] = new Vekri();
             </div>
             <div> <label> Pupils:</label>
                 <div><button class="smallButton" onclick="alterParam('pupil', 1)">1</button>
-                    <button class="smallButton" onclick="alterParam('pupil', 2)">2</button>
-                    <button class="smallButton" onclick="alterParam('pupil', 3)">3</button>
-                    <button class="smallButton" onclick="alterParam('pupil', 4)">4</button>
-                    <button class="smallButton" onclick="alterParam('pupil', 5)">5</button>
+                    <button class="smallButton" onclick="alterParam('pupil', 3)">2</button>
+                    <button class="smallButton" onclick="alterParam('pupil', 5)">3</button>
+                    <button class="smallButton" onclick="alterParam('pupil', 7)">4</button>
+                    <button class="smallButton" onclick="alterParam('pupil', 9)">5</button>
                 </div>
             </div>
-            <div><label>Iris Color:</label><button onclick="ColorPopup('eyes2')" style="display:inline"> </button>
-                <label>Sclera Color:</label><button onclick="ColorPopup('eyes1')" style="display:inline"> </button>
-                <label>Pupil Color:</label><button onclick="ColorPopup('pupil')" style="display:inline"> </button>
+            <div><label>Iris Color:</label><button class="popup" onclick="ColorPopup('eyes2')" id='irispop' style="display:inline; background-color: hsl(0, 0%, 50%)"> </button>
+                <label>Sclera Color:</label><button class="popup" onclick="ColorPopup('eyes1')" id='sclerapop' style="display:inline; background-color: hsl(0, 0%, 100%)"> </button>
+                <label>Pupil Color:</label><button class="popup" onclick="ColorPopup('pupil')" id='pupilpop' style="display:inline; background-color: hsl(0, 0%, 0%)"> </button>
             </div>
             <hr>
             <div><label>Mouth:</label>
@@ -200,6 +193,7 @@ $_SESSION['vekri'] = new Vekri();
                     <button class="smallButton" onclick="alterParam('mouth', 7)">7</button>
                     <button class="smallButton" onclick="alterParam('mouth', 8)">8</button>
                 </div>
+                <label>Color:</label><button class="popup" onclick="ColorPopup('mouth')" id='mouthpop' style="display:inline; background-color: hsl(0, 0%, 0%)"> </button>
             </div>
             <hr>
             <div>
@@ -210,7 +204,7 @@ $_SESSION['vekri'] = new Vekri();
                     <button class="smallButton" onclick="alterParam('acc1', 3)">blushies</button>
                     <button class="smallButton" onclick="alterParam('acc1', 4)">tears</button>
                     <button class="smallButton" onclick="alterParam('acc1', 5)">round glasses</button>
-                    <label>Color:</label><button onclick="ColorPopup('acc1')" style="display:inline"> </button>
+                    <label>Color:</label><button class="popup" onclick="ColorPopup('acc1')" id='acc1pop' style="display:inline; background-color: hsl(0, 0%, 0%)"> </button>
                 </div>
                 <label>Accessory 2</label>
                 <button class="smallButton" onclick="alterParam('acc2', 1)">freckles</button>
@@ -218,7 +212,7 @@ $_SESSION['vekri'] = new Vekri();
                 <button class="smallButton" onclick="alterParam('acc2', 3)">blushies</button>
                 <button class="smallButton" onclick="alterParam('acc2', 4)">tears</button>
                 <button class="smallButton" onclick="alterParam('acc2', 5)">round glasses</button>
-                <label>Color:</label><button onclick="ColorPopup('acc2')" style="display:inline"> </button>
+                <label>Color:</label><button class="popup" onclick="ColorPopup('acc2')" id='acc2pop' style="display:inline; background-color: hsl(0, 0%, 100%)"> </button>
 
             </div>
         </div>
@@ -269,23 +263,17 @@ $_SESSION['vekri'] = new Vekri();
                 <button onclick="OverwritePopUp()">Save Color</button>
             </div>
             <div id="colorBank">
-                <div id='col1'>
-                    <div class="colorSquare savedColors" onclick="LoadColor(1)">
-                    </div>
-                    <div class="colorSquare savedColors" onclick="LoadColor(2)">
-                    </div>
+                <div class="colorSquare savedColors" onclick="LoadColor(1)">
                 </div>
-                <div id='col2'>
-                    <div class="colorSquare savedColors" onclick="LoadColor(3)">
-                    </div>
-                    <div class="colorSquare savedColors" onclick="LoadColor(4)">
-                    </div>
+                <div class="colorSquare savedColors" onclick="LoadColor(2)">
                 </div>
-                <div id='col3'>
-                    <div class="colorSquare savedColors" onclick="LoadColor(5)">
-                    </div>
-                    <div class="colorSquare savedColors" onclick="LoadColor(6)">
-                    </div>
+                <div class="colorSquare savedColors" onclick="LoadColor(3)">
+                </div>
+                <div class="colorSquare savedColors" onclick="LoadColor(4)">
+                </div>
+                <div class="colorSquare savedColors" onclick="LoadColor(5)">
+                </div>
+                <div class="colorSquare savedColors" onclick="LoadColor(6)">
                 </div>
             </div>
         </div>
@@ -307,6 +295,7 @@ $_SESSION['vekri'] = new Vekri();
     sessionStorage.setItem('palette', JSON.stringify(["#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff", "#ffffff"]));
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="converters.js"></script>
 <script type="text/javascript" src="creatureEdit.js"></script>
 <script type="text/javascript" src="colorSelector.js"></script>
 <script type="text/javascript" src="loadThemes.js"></script>

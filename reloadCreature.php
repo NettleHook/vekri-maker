@@ -18,6 +18,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $tailID = $_POST['tail'];
     $hornID = $_POST['horn'];
     $gemID = $_POST['gem'];
+    $eyes = $_POST['eye1'];
+    $pupilID = $_POST['pupil'];
+    $mouthID = $_POST['mouth'];
     $changed = $_POST['changed'];
     // Create connection
     $conn = mysqli_connect($servername, $username, $password, $dbname);
@@ -63,12 +66,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $data = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($data);
         $_SESSION['vekri']->gem = $row['info'];
-    }/*
+    }
+    if ($changed == 'all' || $changed == 'eyes' || $changed == 'eyes1' || $changed == 'eyes2' || $changed == 'pupil') {
+        $sql = "SELECT * FROM FaceFeat WHERE id = $eyes AND type = 'eye'";
+        $data = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($data);
+        $_SESSION['vekri']->eye = $row['info'];
+        if ($eyes % 7 == 0) {
+            $_SESSION['vekri']->pupil = "";
+        } else {
+            $sql = "SELECT * FROM FaceFeat WHERE id = $pupilID AND type = 'pupil'";
+            $data = mysqli_query($conn, $sql);
+            $row = mysqli_fetch_assoc($data);
+            $_SESSION['vekri']->pupil = $row['info'];
+        }
+    }
+    if ($changed == 'all' || $changed == 'mouth') {
+        $sql = "SELECT * FROM FaceFeat WHERE id = $mouthID AND type = 'mouth'";
+        $data = mysqli_query($conn, $sql);
+        $row = mysqli_fetch_assoc($data);
+        $_SESSION['vekri']->mouth = $row['info'];
+    }
     if ($changed == 'all' || $changed == 'horn') {
         $sql = "SELECT * FROM BodyFeat WHERE id = $hornID AND type = 'horn'";
         $data = mysqli_query($conn, $sql);
         $row = mysqli_fetch_assoc($data);
-        $_SESSION['vekri']->horn = $row['info'];*/
+        $_SESSION['vekri']->horn = $row['info'];
+    }
     echo $_SESSION['vekri']->stringify();
     mysqli_close($conn);
 }

@@ -1,9 +1,9 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
-    $servername = "";
-    $username = "";
-    $password = "";
-    $dbname = "";
+    $servername = "hotel.he.net";
+    $username = "cat05";
+    $password = "af0d4i7ibycb";
+    $dbname = "cat05";
 
     // Create connection
     $conn = mysqli_connect($servername, $username, $password, $dbname);
