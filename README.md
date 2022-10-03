@@ -1,6 +1,6 @@
 # vekri-maker
 
-IDEA: recreate one of those creature-creator flash games I used to play as a kid
+IDEA: recreate one of those creature-creator flash games I used to play as a kid. Currently, publicly accessible at https://test.catharina-castillo.corp.he.net/
 
 ----
 
